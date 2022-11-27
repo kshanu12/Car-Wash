@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        .back{
+            /* background-image: url("/background.jpg");
+            background-size: 100vw 100vh ;
+            opacity: 0.7;
+            width: 100vw;
+            height: 100vh;
+            margin-top: 0!important; */
+            padding: 20px;
+        }
+
+        .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+    .mb-3{
+        margin-bottom: 0!important;
+        /* background-color: #fff7fb; */
+        background-color: rgb(236, 255, 255);
+    }
+
+    .tags{
+        margin:0 20px 0 20px;
+        font-weight: bold;
+        font-size: large;
+    }
+
+    .box{
+        background-color: rgb(236, 255, 255);
+        width: 40vw;
+        height: 40vh;
+        border-radius: 10px;
+        padding: 20px 30px 20px 30px;
+    }
+
+    </style>
+</head>
+<body>
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <img src="/logo1.png" class="bi me-2" width="70" role="img" aria-label="Bootstrap"></svg>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/user/booking/<%=id%>" class="tags nav-link px-2 link-dark">Bookings</a></li>
+                    <li><a href="/user/add_booking/<%=id%>" class="tags nav-link px-2 link-secondary">Add Booking</a></li>
+                </ul>
+                <div class="dropdown text-end">
+                    <form action="/user/logout" method="post">
+                        <button type="submit" class="btn btn-danger">Log Out</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="back">
+        <div class="booking">
+            <h1>Add Booking </h1>
+            <div class="box">
+                <form action="<%=id%>" method="POST">
+                    
+                    <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Cities<span style="color: red;">*</span></p>
+                    <select name="city" id="city">
+                        <option value="default" disabled selected>Select City</option>
+                        <%city.forEach((ele)=>{%>
+                            <option value="<%=ele.city%>"><%=ele.city%></option>
+                        <%});%>
+                    </select>
+                    
+                    <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Date<span style="color: red;">*</span></p>
+                    <input type="date" name="date" id="date">
+
+                    <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Services<span style="color: red;">*</span></p>
+                    <select name="service" id="service">
+                        <option value="default" disabled selected>Select Service</option>
+                        <%services.forEach((ele)=>{%>
+                            <option value="<%=ele.service_name%>"><%=ele.service_name%></option>
+                        <%});%>
+                    </select>
+
+                    <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Veicle Number<span style="color: red;">*</span></p>
+                    <input type="text" class="form-control" name="vehicle_no" id="vehicle_no" placeholder="AB12CD3456" required>
+                    
+                    <button type="submit" style="margin-top:5px;" class="btn btn-primary">Book</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

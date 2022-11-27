@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        body{
+            background-image: url("/login-background.jpg");
+            background-size: 100vw 100vh ;
+        }
+
+        .mar{
+            position: relative;
+            margin-bottom: 20px;
+            top: 15%;
+        }
+
+        .pad{
+            padding: 15px 30px;
+            background: #316af6;
+            box-shadow: 5px 10px 10px #63b1b3;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #box{
+            position: absolute;
+            top: 35%;
+            left: 67%;
+            width:  20vw;
+            height: 30vh;
+            background-image: radial-gradient(#fff,#d6ffff );
+            border-radius: 30px;
+            box-shadow: 0px 0px 20px rgb(190, 251, 251);
+            text-align: center;
+        }
+
+        .logo{
+            position: absolute;
+            width: 100px;
+            margin: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <img class="logo" src="/logo1.png">
+    <div id="box">
+        <div class="mar">
+            <a href="/admin/login"><button class="pad w-100 btn btn-lg btn-primary" type="submit">Admin</button></a>
+        </div>
+        <div class="mar">
+            <a href="/user/login"><button class="pad w-100 btn btn-lg btn-primary" type="submit" style="margin-top:10px ;">User</button></a>
+        </div>
+    </div>
+</body>
+</html>

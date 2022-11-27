@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        body{
+            background-image: url("/login-background.jpg");
+            background-size: 100vw 100vh ;
+        }
+
+        .mar{
+            position: relative;
+            margin-bottom: 20px;
+            top: 15%;
+        }
+
+        .pad{
+            padding: 15px 30px;
+            background: #316af6;
+            box-shadow: 5px 10px 10px #63b1b3;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #box{
+            position: absolute;
+            top: 15%;
+            left: 58%;
+            width:  30vw;
+            height: 68vh;
+            background-image: radial-gradient(rgba(255,255,255,0.7),rgba(216, 255, 255,0.7));
+            border-radius: 30px;
+            box-shadow: 0px 0px 20px rgba(190, 251, 251,0.7);
+            text-align: center;
+            padding : 0 50px 0 50px;
+        }
+
+        .logo{
+            position: absolute;
+            width: 100px;
+            margin: 10px;
+        }
+
+        .form-control{
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img class="logo" src="/logo1.png">
+    </div>
+    <div id="box">
+        <form action="sign_up" method="post">
+            <h1 style="padding-bottom:10px;font-weight: bolder;">SignUp</h1>
+
+            <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Name<span style="color: red;">*</span></p>
+            <div class="form-floating" style="z-index: 2;margin-bottom: 10px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+            </div>
+
+            <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Email ID<span style="color: red;">*</span></p>
+            <div class="form-floating" style="z-index: 2;margin-bottom: 10px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;">
+                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+            </div>
+
+            <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Password<span style="color: red;">*</span></p>
+            <div class="form-floating" style="z-index: 2;margin-bottom: 10px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Keep it confidential!!" required>
+            </div>
+
+            <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Contact<span style="color: red;">*</span></p>
+            <div class="form-floating" style="z-index: 2;margin-bottom: 10px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;">
+                <input type="number" class="form-control" name="contact" id="contact" placeholder="9876543210" required>
+            </div>
+
+            <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Adress<span style="color: red;">*</span></p>
+            <div class="form-floating" style="z-index: 2;margin-bottom: 10px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;">
+                <input type="text" class="form-control" name="address" id="address" placeholder="Abc, Xyz" required>
+            </div>
+
+            <button type="submit" style="margin-top:5px;" class="btn btn-primary">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>
