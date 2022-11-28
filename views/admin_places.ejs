@@ -89,18 +89,14 @@
         font-size: large;
     }
 
-    .grp{
-        display:flex;
-    }
-
-    .booking{
+    .add_places{
         display: flex;
         align-items: center;
     }
 
-    .select_filter{
-        margin:0 50px 0 50px;
-        border-radius: 3px;
+    .input_place{
+        border-radius: 5px;
+        margin: 10px 10px 10px 10px;
     }
 
     </style>
@@ -111,12 +107,12 @@
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <img src="/logo1.png" class="bi me-2" width="70" role="img" aria-label="Bootstrap"></svg>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="/admin/booking/<%=id%>" class="tags nav-link px-2 link-secondary">Bookings</a></li>
-                    <li><a href="/admin/places/<%=id%>" class="tags nav-link px-2 link-dark">Places</a></li>
+                    <li><a href="/admin/booking/<%=id%>" class="tags nav-link px-2 link-dark">Bookings</a></li>
+                    <li><a href="/admin/places/<%=id%>" class="tags nav-link px-2 link-secondary">Places</a></li>
                     <li><a href="#" class="tags nav-link px-2 link-dark">Services</a></li>
                 </ul>
                 <div class="dropdown text-end">
-                    <form action="logout" method="post">
+                    <form action="/user/logout" method="post">
                         <button type="submit" class="btn btn-danger">Log Out</button>
                     </form>
                 </div>
@@ -126,78 +122,32 @@
 
 
     <div class="back">
-        <div class="pending_booking">
-            <h1>Bookings Pending</h1>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Contact</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">City</th>
-                        <th scope="col">Service</th>
-                        <th scope="col">Accept / Reject</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <%pending.forEach((ele,i)=>{%>
-                            <tr>
-                                <th scope="row"><%=i+1%></th>
-                                <td><%=ele.Name%></td>
-                                <td><%=ele.contact_no%></td>
-                                <td><%=ele.booking_date%></td>
-                                <td><%=ele.city%></td>
-                                <td><%=ele.service_name%></td>
-                                <td class="grp">
-                                    <form action="accepted/<%=id%>/<%=ele.id%>" method="post">
-                                        <button type="submit" class="btn btn-success">Accept</button>
-                                    </form>
-                                    <form action="rejected/<%=id%>/<%=ele.id%>" method="post">
-                                        <button style="margin-left:10px " type="submit" class="btn btn-danger">Reject</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <%});%>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <div class="booking">
+            <h1>Places </h1>
 
-        <div>
-            <div class="booking">
-                <h1>Bookings</h1>
-                <select name="filter" id="filter" class="select_filter" >
-                    <option value="default" disabled selected>Select Filter</option>
-                    <option value="Place">Place</option>
-                    <option value="Date">Date</option>
-                </select>
-                <input>
+            <div class="add_places">
+                <form action="add_place/<%=id%>" method="post">
+                    <input type="text" class="input_place" name="city" id="city" placeholder="City" required>
+                    <input type="text" class="input_place" name="state" id="state" placeholder="State" required>
+                    <button class="input_place btn btn-primary" type="submit">Add Places</button>
+                </form>
             </div>
+            
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Contact</th>
-                        <th scope="col">Date</th>
                         <th scope="col">City</th>
-                        <th scope="col">Service</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">State</th>
                     </tr>
-                </thead>
+                </thead>                
                 <tbody>
                     <tr>
-                        <%pending.forEach((ele,i)=>{%>
+                        <%places.forEach((ele,i)=>{%>
                             <tr>
                                 <th scope="row"><%=i+1%></th>
-                                <td><%=ele.Name%></td>
-                                <td><%=ele.contact_no%></td>
-                                <td><%=ele.booking_date%></td>
-                                <td><%=ele.city%></td>
-                                <td><%=ele.service_name%></td>
-                                <td><%=ele.status%></td>
+                                <td><%=ele.City%></td>
+                                <td><%=ele.State%></td>
                             </tr>
                         <%});%>
                     </tr>

@@ -7,7 +7,6 @@ const router = express.Router();
 router.get("/login", userController.login);
 router.post("/login", userController.signin);
 router.get("/booking/:id", userController.booking);
-// router.get("/booking", userController.render_booking);  // render user_booking page
 router.get("/sign_up",userController.sign_up);
 router.post("/sign_up",userController.register);
 router.post("/logout", userController.logout);
