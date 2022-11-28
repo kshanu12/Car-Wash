@@ -96,16 +96,26 @@
     .booking{
         display: flex;
         align-items: center;
+        margin-top: 50px;
     }
 
     .select_filter{
-        margin:0 50px 0 50px;
+        margin:0 25px 0 50px;
         border-radius: 3px;
+    }
+
+    #filter_value{
+        border-radius: 5px;
+    }
+
+    .search_btn{
+        margin-left: 30px;
     }
 
     </style>
 </head>
 <body>
+
     <header class="p-3 mb-3 border-bottom">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -113,17 +123,16 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="/admin/booking/<%=id%>" class="tags nav-link px-2 link-secondary">Bookings</a></li>
                     <li><a href="/admin/places/<%=id%>" class="tags nav-link px-2 link-dark">Places</a></li>
-                    <li><a href="#" class="tags nav-link px-2 link-dark">Services</a></li>
+                    <li><a href="/admin/services/<%=id%>" class="tags nav-link px-2 link-dark">Services</a></li>
                 </ul>
                 <div class="dropdown text-end">
-                    <form action="logout" method="post">
+                    <form action="/admin/logout" method="post">
                         <button type="submit" class="btn btn-danger">Log Out</button>
                     </form>
                 </div>
             </div>
         </div>
     </header>
-
 
     <div class="back">
         <div class="pending_booking">
@@ -168,12 +177,19 @@
         <div>
             <div class="booking">
                 <h1>Bookings</h1>
-                <select name="filter" id="filter" class="select_filter" >
-                    <option value="default" disabled selected>Select Filter</option>
-                    <option value="Place">Place</option>
-                    <option value="Date">Date</option>
-                </select>
-                <input>
+                <form action="/admin/booking/search_filter/<%=id%>" method="post">
+                    <!-- <select name="filter_type" id="filter_type" class="select_filter" >
+                        <option value="default" disabled selected>Select Filter</option>
+                        <option value="place">Place</option>
+                        <option value="date">Date</option>
+                    </select> -->
+                    <input type="date" class="select_filter" name="date" id="date" placeholder="Select Date">
+                    <input type="text" class="select_filter" name="place" id="place" placeholder="Enter Place to Searched">
+                    <button type="submit" class="search_btn btn btn-primary">Apply Filter</button>
+                </form>
+                <form action="reset/<%=id%>" method="post">
+                    <button type="submit" class="search_btn btn btn-secondary">Reset</button>
+                </form>
             </div>
             <table class="table table-striped">
                 <thead>
@@ -184,12 +200,11 @@
                         <th scope="col">Date</th>
                         <th scope="col">City</th>
                         <th scope="col">Service</th>
-                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <%pending.forEach((ele,i)=>{%>
+                        <%bookings.forEach((ele,i)=>{%>
                             <tr>
                                 <th scope="row"><%=i+1%></th>
                                 <td><%=ele.Name%></td>
@@ -197,7 +212,6 @@
                                 <td><%=ele.booking_date%></td>
                                 <td><%=ele.city%></td>
                                 <td><%=ele.service_name%></td>
-                                <td><%=ele.status%></td>
                             </tr>
                         <%});%>
                     </tr>

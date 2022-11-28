@@ -108,8 +108,8 @@
                 <img src="/logo1.png" class="bi me-2" width="70" role="img" aria-label="Bootstrap"></svg>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="/admin/booking/<%=id%>" class="tags nav-link px-2 link-dark">Bookings</a></li>
-                    <li><a href="/admin/places/<%=id%>" class="tags nav-link px-2 link-secondary">Places</a></li>
-                    <li><a href="/admin/services/<%=id%>" class="tags nav-link px-2 link-dark">Services</a></li>
+                    <li><a href="/admin/places/<%=id%>" class="tags nav-link px-2 link-dark">Places</a></li>
+                    <li><a href="/admin/services/<%=id%>" class="tags nav-link px-2 link-secondary">Services</a></li>
                 </ul>
                 <div class="dropdown text-end">
                     <form action="/admin/logout" method="post">
@@ -123,13 +123,13 @@
 
     <div class="back">
         <div class="booking">
-            <h1>Places </h1>
+            <h1>Services </h1>
 
             <div class="add_places">
-                <form action="add_place/<%=id%>" method="post">
-                    <input type="text" class="input_place" name="city" id="city" placeholder="City" required>
-                    <input type="text" class="input_place" name="state" id="state" placeholder="State" required>
-                    <button class="input_place btn btn-primary" type="submit">Add Places</button>
+                <form action="add_service/<%=id%>" method="post">
+                    <input type="text" class="input_place" name="service_name" id="service_name" placeholder="Service name" required>
+                    <input type="number" class="input_place" name="cost" id="cost" placeholder="Cost" required>
+                    <button class="input_place btn btn-primary" type="submit">Add Services</button>
                 </form>
             </div>
             
@@ -137,17 +137,17 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">City</th>
-                        <th scope="col">State</th>
+                        <th scope="col">Service Name</th>
+                        <th scope="col">Cost</th>
                     </tr>
                 </thead>                
                 <tbody>
                     <tr>
-                        <%places.forEach((ele,i)=>{%>
+                        <%services.forEach((ele,i)=>{%>
                             <tr>
                                 <th scope="row"><%=i+1%></th>
-                                <td><%=ele.City%></td>
-                                <td><%=ele.State%></td>
+                                <td><%=ele.Service_Name%></td>
+                                <td><%=ele.Cost%></td>
                             </tr>
                         <%});%>
                     </tr>
