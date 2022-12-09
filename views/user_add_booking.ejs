@@ -89,17 +89,63 @@
         font-size: large;
     }
 
+    .back{
+        display: flex;
+    }
+
     .box{
         background-color: rgb(236, 255, 255);
         width: 40vw;
-        height: 40vh;
+        height: auto;
         border-radius: 10px;
-        padding: 20px 30px 20px 30px;
+        padding: 20px 50px 20px 50px;
+        margin-top:40px;
+        margin-left: 20px;
+        text-align: center;
+    }
+    
+    .align{
+        margin-bottom: 20px;
+        margin-left: 20px;
+        display: block;
+        height: 35px;
+        border-radius: 5px;
+    }
+    
+    .combine{
+        display: flex;
+    }
+    
+    .button-align{
+        text-align: center;
+    }
+    
+    .hidden_ele{
+        display: none;
+        margin-top: 20px;
+    }
+    
+    .nhidden_ele{
+        margin-top: 20px;
+    }
+    
+    .cost{
+        width: 20vw;
+        height: 20vh;
+        text-align: center;
+        margin-left: 20vw;
+    }
+
+    .cost_box{
+        background-color: rgb(236, 255, 255);
+        border-radius: 10px;
+        padding: 20px 50px 20px 50px;
+        margin-top:40px;
     }
 
     </style>
 </head>
-<body>
+<body onload="myFunction()">
     <header class="p-3 mb-3 border-bottom">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -117,40 +163,98 @@
         </div>
     </header>
 
-
     <div class="back">
         <div class="booking">
             <h1>Add Booking </h1>
             <div class="box">
-                <form action="<%=id%>" method="POST">
-                    
-                    <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Cities<span style="color: red;">*</span></p>
-                    <select name="city" id="city">
-                        <option value="default" disabled selected>Select City</option>
-                        <%city.forEach((ele)=>{%>
-                            <option value="<%=ele.city%>"><%=ele.city%></option>
-                        <%});%>
-                    </select>
-                    
-                    <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Date<span style="color: red;">*</span></p>
-                    <input type="date" name="date" id="date">
+                <form action="/user/add_booking/check_availability/<%=id%>" method="POST">
 
-                    <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Services<span style="color: red;">*</span></p>
-                    <select name="service" id="service">
-                        <option value="default" disabled selected>Select Service</option>
-                        <%services.forEach((ele)=>{%>
-                            <option value="<%=ele.service_name%>"><%=ele.service_name%></option>
-                        <%});%>
-                    </select>
+                    <div class="combine row">
+                        <p class="heading col-4" >Cities<span style="color: red;">*</span></p>
+                        <select class="align col-6" name="city" id="city" required>
+                            <option value="" disabled selected>Select City</option>
+                            <%city.forEach((ele)=>{%>
+                                <option value="<%=ele.city%>"><%=ele.city%></option>
+                            <%});%>
+                        </select>
+                    </div>
 
-                    <p style="text-align: left;margin-bottom: -2px;padding-left: 10px;">Veicle Number<span style="color: red;">*</span></p>
-                    <input type="text" class="form-control" name="vehicle_no" id="vehicle_no" placeholder="AB12CD3456" required>
-                    
-                    <button type="submit" style="margin-top:5px;" class="btn btn-primary">Book</button>
+                    <div class="combine row">
+                        <p class="heading col-4">Date<span style="color: red;">*</span></p>
+                        <input class="align col-6" type="date" name="date" id="date" required>
+                    </div>
+
+                    <div class="button-align">
+                        <button type="submit" style="margin-top:5px;width:auto" class="btn btn-primary">Check Availability</button>
+                    </div>
+
+                <span>
+                    <%if(message=="Slots are Available"){%>
+                        <span style="color:green"><%=message%></span>
+                    <%}else{%>
+                            <span style="color:red"><%=message%></span>
+                    <%}%>
+                </span>
+
+                    <div class=<%=dis%>>
+                        <div class="combine row">
+                            <p class="heading col-4">Services<span style="color: red;">*</span></p>
+                            <select class="align col-6" name="service" id="service">
+                                <option value="" disabled selected>Select Service</option>
+                                <%services.forEach((ele)=>{%>
+                                    <option value="<%=ele.Service_Name%>"><%=ele.Service_Name%></option>
+                                <%});%>
+                            </select>
+                        </div>
+
+                        <div class="combine row">
+                            <p class="heading col-4">Veicle Number<span style="color: red;">*</span></p>
+                            <input class="align col-6" type="text" class="form-control" name="vehicle_no" id="vehicle_no" placeholder="AB12CD3456" >
+                        </div>
+
+                        <div class="button-align">
+                            <button formaction="/user/add_booking/<%=id%>" type="submit" style="margin-top:5px;width:100px" class="btn btn-primary">Book</button>
+                        </div>
+                    </div>
 
                 </form>
             </div>
         </div>
+        <div class="cost">
+            <h1>Cost</h1>
+            <div class="cost_box">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <%services.forEach((ele,i)=>{%>
+                                <tr>
+                                    <th scope="row"><%=i+1%></th>
+                                    <td><%=ele.Service_Name%></td>
+                                    <td><%=ele.Cost%></td>
+                                </tr>
+                            <%});%>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+
+    <script>
+        function myFunction() {
+            document.getElementById("city").value='<%=selected_city%>';
+            console.log("city",'<%=selected_city%>')
+            document.getElementById("date").value='<%=selected_date%>';
+            console.log("date",'<%=selected_date%>')
+        }
+    </script>
 </body>
 </html>
